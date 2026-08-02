@@ -2,24 +2,24 @@
 
 class Plant:
     class Stats:
-            def __init__(self):
-                self._grow_counter = 0
-                self._age_counter = 0
-                self._show_counter = 0
-                self._shade_counter = 0
-    
-            def grow_counter(self) -> None:
-                self._grow_counter += 1
-    
-            def age_counter(self) -> None:
-                self._age_counter += 1
-    
-            def show_counter(self) -> None:
-                self._show_counter += 1
+        def __init__(self):
+            self._grow_counter = 0
+            self._age_counter = 0
+            self._show_counter = 0
+            self._shade_counter = 0
 
-            def show_statistics(self) -> None:
-                print(f"Stats: {self._grow_counter} grow, "
-                      f"{self._age_counter} age, {self._show_counter} show")
+        def grow_counter(self) -> None:
+            self._grow_counter += 1
+
+        def age_counter(self) -> None:
+            self._age_counter += 1
+
+        def show_counter(self) -> None:
+            self._show_counter += 1
+
+        def show_statistics(self) -> None:
+            print(f"Stats: {self._grow_counter} grow, "
+                  f"{self._age_counter} age, {self._show_counter} show")
 
     def __init__(self, name: str, height: float, plant_age: int) -> None:
         self.name = name
@@ -35,7 +35,6 @@ class Plant:
             self._plant_age = plant_age
         self._stats = Plant.Stats()
 
- 
     @staticmethod
     def is_older_than_year(age: int) -> bool:
         return age > 365
@@ -77,11 +76,12 @@ class Plant:
 
     def get_age(self) -> int:
         return self._plant_age
-    
+
 
 def display_stats(plant: Plant) -> None:
     print(f"[statistics from {plant.name}]")
     plant._stats.show_statistics()
+
 
 class Flower(Plant):
     def __init__(self, name: str, height: float,
@@ -123,11 +123,11 @@ class Tree(Plant):
                  plant_age: int, trunk_diameter: float) -> None:
         super().__init__(name, height, plant_age)
         self._trunk_diameter = round(trunk_diameter, 1)
-        self._stats = self.TreeStats()
+        self._stats: Tree.TreeStats = self.TreeStats()
 
     def produce_shade(self) -> None:
-        print(f"Tree {self.name} now produces a shade of "
-              f"{self._height:.1f}cm long and {self._trunk_diameter:.1f}cm wide.")
+        print(f"Tree {self.name} now produces a shade of {self._height:.1f}"
+              f"cm long and {self._trunk_diameter:.1f}cm wide.")
         self._stats.shade_counter()
 
     def show(self) -> None:
